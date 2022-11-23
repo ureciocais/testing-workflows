@@ -12,6 +12,6 @@ jobs:
     steps:
       - run: exit 1
       - name: check
-        if: ${{ failure() }} && ${{ GITHUB_REF == "refs/heads/main" }}
+        if: ${{ failure() }} && ${{ $GITHUB_REF }} == "refs/heads/main"
         run: echo 'is main'
         
