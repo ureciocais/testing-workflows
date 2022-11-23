@@ -12,6 +12,6 @@ jobs:
     steps:
       - run: exit 1
       - name: check
-        if: github.ref == 'refs/heads/main'
+        if: failure() && github.ref == 'refs/heads/main'
         run: echo 'is main'
         
