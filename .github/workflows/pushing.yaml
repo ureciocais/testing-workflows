@@ -13,5 +13,5 @@ jobs:
       - run: exit 1
       - name: check
         if: failure() && github.ref == 'refs/heads/main'
-        run: echo 'is main'
+        run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         
