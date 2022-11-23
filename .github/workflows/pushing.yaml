@@ -1,5 +1,10 @@
 name: Pushing to main
-on: push
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   something:
