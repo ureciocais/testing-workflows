@@ -1,0 +1,8 @@
+name: Pushing to main
+on: push
+
+jobs:
+  something:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $GITHUB_REF
