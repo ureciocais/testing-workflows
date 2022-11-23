@@ -10,4 +10,8 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $GITHUB_REF
+      - run: exit 1
+      - name: check
+        if: ${{ failure() }} && ${{ $GITHUB_REF == "refs/heads/main" }}
+        run: echo 'is main'
+        
