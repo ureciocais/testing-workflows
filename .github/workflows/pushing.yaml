@@ -2,16 +2,23 @@ name: Pushing to main
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Sha to build
+        required: false
+      skip-dev-latest-tag:
+        description: If true, dev-latest won't be tagged
+        required: false
+        default: true
 
 jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
-      - name: check
-        if: failure() && github.ref == 'refs/heads/main'
-        run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        
+      - name: not dev latest
+        if: ${{ !inputs.skip-dev-latest-tag }}
+        run: NOTTT
+      - name: dev latest
+        if: ${{ inputs.skip-dev-latest-tag }}
+        run: LATTESSSSTT
