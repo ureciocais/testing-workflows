@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: not dev latest
         if: ${{ !inputs.skip-dev-latest-tag }}
-        run: NOTTT
+        run: echo "NOTTT"
       - name: dev latest
         if: ${{ inputs.skip-dev-latest-tag }}
-        run: LATTESSSSTT
+        run: echo "LATTESSSSTT"
