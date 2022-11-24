@@ -16,9 +16,10 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - name: not dev latest
-        if: ${{ !inputs.skip-dev-latest-tag }}
-        run: echo "adding latest"
-      - name: dev latest
-        if: ${{ inputs.skip-dev-latest-tag }}
-        run: echo "skipping latest"
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.CAISGROUP_GITHUB_GLOBAL_TOKEN }}
+          fetch-depth: 0
+
+      - run: git pull origin $GITHUB_REF
