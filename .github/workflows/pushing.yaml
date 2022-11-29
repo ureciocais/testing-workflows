@@ -1,7 +1,7 @@
 name: Pushing
 
 on:
-  push:
+  push: {}
 
 jobs:
   something:
