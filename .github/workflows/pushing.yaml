@@ -1,3 +1,4 @@
+# something differenttt
 name: Pushing
 
 on:
@@ -19,5 +20,7 @@ jobs:
       #     fetch-depth: 0
 
       - name: "Pull Request ${{ steps.PR.outputs.number }}"
-        run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+        run: |
+          echo "from ${{ toJSON(fromJSON(steps.PR.outputs.pr).auto_merge) }}"
+          # echo "to ${{ fromJSON(steps.PR.outputs.pr).base.ref }}"
 
