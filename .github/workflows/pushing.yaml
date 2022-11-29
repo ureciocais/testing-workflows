@@ -19,6 +19,5 @@ jobs:
       #     fetch-depth: 0
 
       - name: "Pull Request ${{ steps.PR.outputs.number }}"
-        run: |
-          echo "from ${{ fromJSON(steps.PR.outputs.pr).head.ref }}"
-          echo "to ${{ fromJSON(steps.PR.outputs.pr).base.ref }}"
+        run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+
