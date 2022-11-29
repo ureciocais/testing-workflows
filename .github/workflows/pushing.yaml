@@ -21,6 +21,6 @@ jobs:
 
       - name: "Pull Request ${{ steps.PR.outputs.number }}"
         run: |
-          echo "from ${{ fromJSON(steps.PR.outputs.pr).head.ref }}"
-          echo "to ${{ fromJSON(steps.PR.outputs.pr).base.ref }}"
+          echo "from ${{ fromJSON(steps.PR.outputs.pr).auto_merge }}"
+          # echo "to ${{ fromJSON(steps.PR.outputs.pr).base.ref }}"
 
