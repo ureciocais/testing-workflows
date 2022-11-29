@@ -1,24 +1,23 @@
-name: Pushing to main
+name: Pushing
 
 on:
   push:
-  workflow_dispatch:
-    inputs:
-      sha:
-        description: Sha to build
-        required: false
-      skip-dev-latest-tag:
-        description: If true, dev-latest won't be tagged
-        required: false
-        default: true
 
 jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - uses: 8BitJonny/gh-get-current-pr@2.1.3
+        id: PR
         with:
-          fetch-depth: 0
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          filterOutClosed: true
+      
+      # - name: Check out code
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
 
-      - run: git pull origin $GITHUB_REF_NAME
+      - run: |
+          echo "from ${{ fromJSON(steps.PR.outputs.pr).head.ref }}"
+          echo "to ${{ fromJSON(steps.PR.outputs.pr).base.ref }}"
