@@ -16,7 +16,7 @@ jobs:
       - name: Build count
         uses: masci/datadog@v1
         with:
-          api-key: DD_API_KEY
+          api-key: d2210e7ddc6b03363ecdaee3994c4130
           metrics: |
             - type: "count"
               name: "test.runs.count"
