@@ -13,9 +13,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: checking timeout
-        timeout-minutes: 1
-        run: |
-          sleep 120
-          echo 'finished'
+      - name: Build count
+        uses: masci/datadog@v1
+        with:
+          api-key: DD_API_KEY
+          metrics: |
+            - type: "count"
+              name: "test.runs.count"
+              value: 1.0
+              host: ${{ github.repository_owner }}
+              tags:
+                - "project:${{ github.repository }}"
+                - "branch:${{ github.head_ref }}"
 
