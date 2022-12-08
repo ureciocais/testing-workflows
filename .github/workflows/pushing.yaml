@@ -13,16 +13,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build count
-        uses: masci/datadog@v1
-        with:
-          api-key: d2210e7ddc6b03363ecdaee3994c4130
-          metrics: |
-            - type: "count"
-              name: "test.runs.count"
-              value: 1.0
-              host: ${{ github.repository_owner }}
-              tags:
-                - "project:${{ github.repository }}"
-                - "branch:${{ github.head_ref }}"
+      - name: Paco
+        timeout-minutes: 1
+        run: |
+          sleep 120
 
+      - name: failure
+        if: failure()
+        run: echo "FAILLLLL"
