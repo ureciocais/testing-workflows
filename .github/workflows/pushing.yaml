@@ -1,3 +1,4 @@
+
 name: Pushing
 
 on:
@@ -7,17 +8,14 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      
       - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - name: Paco
-        timeout-minutes: 1
-        run: |
-          sleep 120
-
-      - name: failure
-        if: failure()
-        run: echo "FAILLLLL"
+      - run: mkdir paco
+      - run: pwd
+      - name: Which dir
+        uses: nick-invision/retry@v2
+        working-directory: paco
+        with:
+          command: pwd
