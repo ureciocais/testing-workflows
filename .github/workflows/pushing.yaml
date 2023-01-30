@@ -43,6 +43,6 @@ jobs:
         shell: bash
         run: |
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"💥 Release workflow failed 💥 \n $RUN_URL"}' https://hooks.slack.com/services/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
+          echo "Something failed: $RUN_URL"
 
     
