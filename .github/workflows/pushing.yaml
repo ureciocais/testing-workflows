@@ -7,8 +7,8 @@ on:
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
-    outputs:
-      failed: ${{ steps.check-job-failure.outputs.failed }}
+    # outputs:
+    #   failed: ${{ steps.check-job-failure.outputs.failed }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -16,12 +16,12 @@ jobs:
           fetch-depth: 0
       - name: Failed
         run: exit 1
-      - uses: ./.github/actions/check-job-failure
+      # - uses: ./.github/actions/check-job-failure
   something-that-doesnt-fail:
     runs-on: ubuntu-latest
     needs: something-that-doesnt-fail
-    outputs:
-      failed: ${{ steps.check-job-failure.outputs.failed }}
+    # outputs:
+    #   failed: ${{ steps.check-job-failure.outputs.failed }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -29,21 +29,20 @@ jobs:
           fetch-depth: 0
       - name: Failed
         run: exit 0
-      - uses: ./.github/actions/check-job-failure
+      # - uses: ./.github/actions/check-job-failure
   something-that-checks-failures:
     runs-on: ubuntu-latest
     needs: [something-that-fails, something-that-doesnt-fail]
+    if: always() && (needs.something-that-fails.result == 'failure' || needs.something-that-doesnt-fail.result == 'failure')
     steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Check jobs failure
+      - name: Alert
         shell: bash
-        id: check-job-failure
         run: |
-          if [ "${{ needs.something-that-fails.outputs.failed }}" = "true" ] || [ "${{ needs.something-that-doesnt-fail.outputs.failed }}" = "true" ]; then
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"Something failed"}' https://hooks.slack.com/services/...
-          fi
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"💥 Release workflow failed 💥 \n $RUN_URL"}' https://hooks.slack.com/services/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
 
     
