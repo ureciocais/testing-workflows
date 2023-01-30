@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Failed
-        run: exit 1
+        run: exit 0
       # - uses: ./.github/actions/check-job-failure
   something-that-checks-failures:
     runs-on: ubuntu-latest
