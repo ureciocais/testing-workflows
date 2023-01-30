@@ -5,17 +5,45 @@ on:
   push
 
 jobs:
-  something:
+  something-that-fails:
     runs-on: ubuntu-latest
+    outputs:
+      failed: ${{ steps.check-job-failure.outputs.failed }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: mkdir paco
-      - run: pwd
-      - name: Which dir
-        uses: nick-invision/retry@v2
-        working-directory: paco
+      - name: Failed
+        run: exit 1
+      - uses: ./.github/actions/check-job-failure
+  something-that-doesnt-fail:
+    runs-on: ubuntu-latest
+    needs: something-that-doesnt-fail
+    outputs:
+      failed: ${{ steps.check-job-failure.outputs.failed }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
         with:
-          command: pwd
+          fetch-depth: 0
+      - name: Failed
+        run: exit 0
+      - uses: ./.github/actions/check-job-failure
+  something-that-checks-failures:
+    runs-on: ubuntu-latest
+    needs: [something-that-fails, something-that-doesnt-fail]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Check jobs failure
+        shell: bash
+        id: check-job-failure
+        run: |
+          if [ "${{ needs.something-that-fails.outputs.failed }}" = "true" ] || [ "${{ needs.something-that-doesnt-fail.outputs.failed }}" = "true" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{"text":"Something failed"}' https://hooks.slack.com/services/...
+          fi
+
+    
