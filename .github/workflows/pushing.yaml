@@ -19,7 +19,6 @@ jobs:
       # - uses: ./.github/actions/check-job-failure
   something-that-doesnt-fail:
     runs-on: ubuntu-latest
-    needs: something-that-doesnt-fail
     # outputs:
     #   failed: ${{ steps.check-job-failure.outputs.failed }}
     steps:
