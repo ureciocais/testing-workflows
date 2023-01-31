@@ -2,19 +2,19 @@
 name: Pushing
 
 on:
-  push
+  - push
+  - workflow_dispatch
 
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
-    # outputs:
-    #   failed: ${{ steps.check-job-failure.outputs.failed }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Failed
-        if: github.ref == 'refs/heads/main'
-        run: echo "here"
+          path: monorepo
+      - uses: ./monorepo/.github/actions/install-yarn-deps
+        with:
+          repository-path: 'monorepo'
     
