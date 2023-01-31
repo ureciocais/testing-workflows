@@ -15,5 +15,5 @@ jobs:
         with:
           fetch-depth: 0
       - name: Failed
-        run: exit here
+        run: echo "here"
     
