@@ -15,33 +15,5 @@ jobs:
         with:
           fetch-depth: 0
       - name: Failed
-        run: exit 0
-      # - uses: ./.github/actions/check-job-failure
-  something-that-doesnt-fail:
-    runs-on: ubuntu-latest
-    # outputs:
-    #   failed: ${{ steps.check-job-failure.outputs.failed }}
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Failed
-        run: exit 0
-      # - uses: ./.github/actions/check-job-failure
-  something-that-checks-failures:
-    runs-on: ubuntu-latest
-    needs: [something-that-fails, something-that-doesnt-fail]
-    if: always() && (needs.something-that-fails.result == 'failure' || needs.something-that-doesnt-fail.result == 'failure')
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Alert
-        shell: bash
-        run: |
-          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          echo "Something failed: $RUN_URL"
-
+        run: exit here
     
