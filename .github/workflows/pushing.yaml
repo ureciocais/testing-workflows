@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
           path: monorepo
-      - uses: ./.github/actions/install-yarn-deps
+      - uses: ./monorepo/.github/actions/install-yarn-deps
         with:
           repository-path: 'monorepo'
     
