@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ureciocais/testing-workflows/issues"
   },
-  "homepage": "https://github.com/ureciocais/testing-workflows#readme"
+  "homepage": "https://github.com/ureciocais/testing-workflows#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
 }
