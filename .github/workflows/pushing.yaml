@@ -17,4 +17,14 @@ jobs:
       - uses: ./monorepo/.github/actions/install-yarn-deps
         with:
           repository-path: 'monorepo'
-    
+      
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          repository: ureciocais/testing-workflows-2
+          fetch-depth: 0
+          path: monorepo-infra
+      
+      - uses: ./monorepo/.github/actions/install-yarn-deps
+        with:
+          repository-path: monorepo-infra
