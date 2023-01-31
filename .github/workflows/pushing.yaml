@@ -15,5 +15,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: Failed
+        if: github.ref == 'refs/heads/master'
         run: echo "here"
     
