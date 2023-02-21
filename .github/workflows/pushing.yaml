@@ -8,4 +8,7 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.type }}
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(JSON.stringify(${{ github.event }}))
