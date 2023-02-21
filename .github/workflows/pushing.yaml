@@ -1,8 +1,9 @@
 name: Pushing
 
 on:
-  - push
-  - workflow_dispatch
+  pull_request:
+  push:
+    branches: [main]
 
 jobs:
   something-that-fails:
