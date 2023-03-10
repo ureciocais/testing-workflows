@@ -1,9 +1,0 @@
-name: Check job failure
-description: This will save an output variable called "failed" that can be used in other steps
-runs:
-  using: "composite"
-  steps:
-    - name: Check job failure
-      shell: bash
-      id: check-job-failure
-      run: echo "failed=true" >> $GITHUB_OUTPUTS
