@@ -9,6 +9,4 @@ runs:
   using: "composite"
   steps:
     - uses: actions/setup-node@v3
-      if: ${{ inputs.setup-node == 'true' }}
-      with:
-        node-version: ${{ inputs.node-version }}
+      if: inputs.setup-node == 'true'
