@@ -10,6 +10,7 @@ runs:
   steps:
     - name: Should run
       if: inputs.setup-node == 'true'
+      shell: bash
       run: echo 'running'
     - uses: actions/setup-node@v3
       if: inputs.setup-node == 'true'
