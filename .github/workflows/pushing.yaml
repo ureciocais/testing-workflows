@@ -8,8 +8,7 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - id: should-run
-        run: echo "shouldRun=true" >> $GITHUB_OUTPUT
-      - name: Run if
-        if: ${{ steps.should-run.outputs.shouldRun }}
-        run: echo "RUNNINGGGG"
+      - uses: actions/checkout@v3
+      - uses: ./github/actions/install
+        with:
+          setup-node: false
