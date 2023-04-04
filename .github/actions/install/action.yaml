@@ -8,5 +8,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Should run
+      if: inputs.setup-node == 'true'
+      run: echo 'running'
     - uses: actions/setup-node@v3
       if: inputs.setup-node == 'true'
