@@ -4,7 +4,7 @@ inputs:
   setup-node:
     description: "Wether to setup node or not"
     required: false
-    default: "true"
+    default: true
 runs:
   using: "composite"
   steps:
@@ -12,5 +12,3 @@ runs:
       if: inputs.setup-node == 'true'
       shell: bash
       run: echo 'running'
-    - uses: actions/setup-node@v3
-      if: inputs.setup-node == 'true'
