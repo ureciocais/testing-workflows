@@ -1,8 +1,20 @@
 name: "Setup Node"
 description: "Setup Node"
+inputs:
+  should-run:
+    description: "Should run"
+    required: true
 runs:
   using: "composite"
   steps:
-    - name: Should print secret
+    - name: Ehoing
       shell: bash
-      run: echo 'secret is ${{ secrets.SOME_SECRET }}'
+      run: echo ${{ inputs.should-run }}
+    - name: Should work
+      if: ${{ inputs.should-run == "true" }}
+      shell: bash
+      run: exit 0
+    - name: Should not work
+      if: ${{ inputs.should-run == "false" }}
+      shell: bash
+      run: exit 1
