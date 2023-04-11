@@ -1,13 +1,17 @@
 name: "Setup Node"
 description: "Setup Node"
+inputs:
+  should-run:
+    description: "Should run"
+    required: true
 runs:
   using: "composite"
   steps:
     - name: Should work
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'hellooooooo') }}
+      if: inputs.should-run == "true"
       shell: bash
       run: exit 0
     - name: Should not work
-      if: ${{ !contains(github.event.pull_request.labels.*.name, 'hellooooooo') }}
+      if: inputs.should-run == "false"
       shell: bash
       run: exit 1
