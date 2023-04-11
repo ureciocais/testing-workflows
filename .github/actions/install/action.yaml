@@ -9,7 +9,7 @@ runs:
   steps:
     - name: Ehoing
       shell: bash
-      run: echo "Should run: ${{ inputs.should-run }}"
+      run: echo ${{ inputs.should-run }}
     - name: Should work
       if: inputs.should-run == "true"
       shell: bash
