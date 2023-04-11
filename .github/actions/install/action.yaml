@@ -3,6 +3,11 @@ description: "Setup Node"
 runs:
   using: "composite"
   steps:
-    - name: Should print secret
+    - name: Should work
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'hellooooooo') }}
       shell: bash
-      run: echo 'secret is ${{ secrets.SOME_SECRET }}'
+      run: exit 0
+    - name: Should not work
+      if: ${{ !contains(github.event.pull_request.labels.*.name, 'hellooooooo') }}
+      shell: bash
+      run: exit 1
