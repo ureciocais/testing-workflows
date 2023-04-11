@@ -11,10 +11,10 @@ runs:
       shell: bash
       run: echo ${{ inputs.should-run }}
     - name: Should work
-      if: inputs.should-run == "true"
+      if: ${{ inputs.should-run == "true" }}
       shell: bash
       run: exit 0
     - name: Should not work
-      if: inputs.should-run == "false"
+      if: ${{ inputs.should-run == "false" }}
       shell: bash
       run: exit 1
