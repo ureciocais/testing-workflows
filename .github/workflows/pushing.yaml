@@ -1,8 +1,6 @@
 name: Pushing
 
-on:
-  - push
-  - workflow_dispatch
+on: pull_request
 
 jobs:
   something-that-fails:
