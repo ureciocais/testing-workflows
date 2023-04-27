@@ -1,8 +1,14 @@
 name: "Setup Node"
 description: "Setup Node"
+inputs:
+  something:
+    description: "Node version"
+    required: true
+    default: true
 runs:
   using: "composite"
   steps:
-    - name: Should print secret
+    - name: Running
+      if: inputs.something == 'true'
       shell: bash
-      run: echo 'secret is ${{ secrets.SOME_SECRET }}'
+      run: echo 'yes'
