@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "*/1 * * * *"
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   rerun_jobs:
     runs-on: ubuntu-latest
