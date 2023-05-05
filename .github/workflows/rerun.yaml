@@ -1,0 +1,37 @@
+name: Rerun Failed workflows if they are stuck
+
+on:
+  schedule:
+    - cron: "*/01 * * * *"
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  rerun_jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rerun Failed Jobs
+        run: |
+          # check if latest commit on main was more than 90 minutes ago
+          last_commit=$(gh api repos/ureciocais/testing-workflows/commits/main --jq '.commit.author.date')
+          last_commit_timestamp=$(date -d "$last_commit" +%s)
+          current_timestamp=$(date +%s)
+          diff=$(($current_timestamp - $last_commit_timestamp))
+          if [[ $diff -lt 60 ]]; then
+            echo "Latest commit on main was less than 1 minute ago. Exiting..."
+            exit 0
+          fi
+
+          # iterate over all approved PRs that are on auto merge
+          gh pr list --json number,headRefName,headRepositoryName,headRepositoryOwner --jq '.[] | select(.headRepositoryName == "testing-workflows" and .headRepositoryOwner == "ureciocais" and .headRefName | contains("auto-merge") and .state == "APPROVED")) | .number' | while read -r pr_number; do
+            # get the workflow run id for the PR
+            run_id=$(gh run list --json id --jq '.[] | select(.head_branch == "auto-merge-'$pr_number'") | .id')
+            # get the number of failed jobs
+            failed_jobs=$(gh run view $run_id --json conclusion --jq '.jobs[] | select(.conclusion == "failure") | .conclusion' | wc -l)
+            # if there are failed jobs, rerun them
+            if [[ $failed_jobs -gt 0 ]]; then
+              echo "Rerunning failed jobs for PR $pr_number"
+              gh run rerun $run_id --failed --repo $GITHUB_REPOSITORY
+            fi
+          done
