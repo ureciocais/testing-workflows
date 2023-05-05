@@ -18,8 +18,8 @@ jobs:
           last_commit_timestamp=$(date -d "$last_commit" +%s)
           current_timestamp=$(date +%s)
           diff=$(($current_timestamp - $last_commit_timestamp))
-          if [[ $diff -lt 5400 ]]; then
-            echo "Latest commit on main was less than 90 minutes ago. Exiting..."
+          if [[ $diff -lt 60 ]]; then
+            echo "Latest commit on main was less than 1 minute ago. Exiting..."
             exit 0
           fi
 
