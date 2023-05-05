@@ -24,7 +24,7 @@ jobs:
           fi
 
           # iterate over all approved PRs that are on auto merge
-          gh pr list --state approved --json number,headRefName,headRepositoryName,headRepositoryOwner --jq '.[] | select(.headRepositoryName == "testing-workflows" and .headRepositoryOwner == "ureciocais" and .headRefName | contains("auto-merge")) | .number' | while read -r pr_number; do
+          gh pr list --json number,headRefName,headRepositoryName,headRepositoryOwner --jq '.[] | select(.headRepositoryName == "testing-workflows" and .headRepositoryOwner == "ureciocais" and .headRefName | contains("auto-merge") and .state == "APPROVED")) | .number' | while read -r pr_number; do
             # get the workflow run id for the PR
             run_id=$(gh run list --json id --jq '.[] | select(.head_branch == "auto-merge-'$pr_number'") | .id')
             # get the number of failed jobs
