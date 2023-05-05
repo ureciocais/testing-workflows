@@ -14,7 +14,7 @@ jobs:
       - name: Rerun Failed Jobs
         run: |
           # check if latest commit on main was more than 90 minutes ago
-          last_commit=$(gh api repos/cais-group/monorepo/commits/main --jq '.commit.author.date')
+          last_commit=$(gh api repos/ureciocais/testing-workflows/commits/main --jq '.commit.author.date')
           last_commit_timestamp=$(date -d "$last_commit" +%s)
           current_timestamp=$(date +%s)
           diff=$(($current_timestamp - $last_commit_timestamp))
