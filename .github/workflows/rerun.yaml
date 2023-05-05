@@ -2,7 +2,7 @@ name: Rerun Failed workflows if they are stuck
 
 on:
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/01 * * * *"
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
