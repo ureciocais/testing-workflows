@@ -6,7 +6,7 @@ on:
 
 jobs:
   rerun_jobs:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Rerun Failed Jobs
         run: |
