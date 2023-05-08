@@ -5,7 +5,7 @@ on: push
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
-    if: ${{ secrets.SOME_SECRET == 'true' }}
+    if: ${{ vars.RUN_IT == 'true' }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
