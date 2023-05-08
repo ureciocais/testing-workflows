@@ -5,6 +5,7 @@ on: push
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
+    if: ${{ secrets.ENABLED == 'true' }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
