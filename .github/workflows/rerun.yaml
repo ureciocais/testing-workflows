@@ -26,10 +26,13 @@ jobs:
           fi
 
           HAS_RERUN_A_WORKFLOW=false
-          gh pr list --json headRefName,reviewDecision --jq '.[] | select(.reviewDecision == "APPROVED") | .headRefName' | while read -r ref_name; do
-            gh run list -b "$ref_name" --json conclusion,databaseId --jq '.[] | select(.conclusion == "failure") | .databaseId' | while read -r workflow_id; do
+
+          ref_names=$(gh pr list --json headRefName,reviewDecision --jq '.[] | select(.reviewDecision == "APPROVED") | .headRefName')
+          for ref_name in $ref_names; do
+            workflow_ids=$(gh run list -b "$ref_name" --json conclusion,databaseId --jq '.[] | select(.conclusion == "failure") | .databaseId')
+            for workflow_id in $workflow_ids; do
               echo "Rerunning workflow $workflow_id for branch $ref_name"
-              gh run rerun $workflow_id
+              gh run rerun "$workflow_id"
               HAS_RERUN_A_WORKFLOW=true
             done
 
