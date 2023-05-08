@@ -23,15 +23,17 @@ jobs:
             exit 0
           fi
 
-          # iterate over all approved PRs that are on auto merge
-          gh pr list --json number,headRefName,headRepositoryName,headRepositoryOwner --jq '.[] | select(.headRepositoryName == "testing-workflows" and .headRepositoryOwner == "ureciocais" and .headRefName | contains("auto-merge") and .state == "APPROVED")) | .number' | while read -r pr_number; do
-            # get the workflow run id for the PR
-            run_id=$(gh run list --json id --jq '.[] | select(.head_branch == "auto-merge-'$pr_number'") | .id')
-            # get the number of failed jobs
-            failed_jobs=$(gh run view $run_id --json conclusion --jq '.jobs[] | select(.conclusion == "failure") | .conclusion' | wc -l)
-            # if there are failed jobs, rerun them
-            if [[ $failed_jobs -gt 0 ]]; then
-              echo "Rerunning failed jobs for PR $pr_number"
-              gh run rerun $run_id --failed --repo $GITHUB_REPOSITORY
+          HAS_RERUN_A_WORKFLOW=false
+          gh pr list --json headRefName,reviewDecision --jq '.[] | select(.reviewDecision == "APPROVED") | .headRefName' | while read -r ref_name; do
+            gh run list -b "$ref_name" --json conclusion,databaseId --jq '.[] | select(.conclusion == "failure") | .databaseId' | while read -r $workflow_id; do
+              gh rerun $workflow_id
+              HAS_RERUN_A_WORKFLOW=true
+            done
+
+            if [[ $HAS_RERUN_A_WORKFLOW == true ]]; then
+              echo "Rerun failed jobs for branch $ref_name"
+              exit 0
             fi
           done
+
+          echo "Did not find any PR with failing workflows. Exiting..."
