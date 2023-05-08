@@ -27,7 +27,7 @@ jobs:
 
           HAS_RERUN_A_WORKFLOW=false
           gh pr list --json headRefName,reviewDecision --jq '.[] | select(.reviewDecision == "APPROVED") | .headRefName' | while read -r ref_name; do
-            gh run list -b "$ref_name" --json conclusion,databaseId --jq '.[] | select(.conclusion == "failure") | .databaseId' | while read -r $workflow_id; do
+            gh run list -b "$ref_name" --json conclusion,databaseId --jq '.[] | select(.conclusion == "failure") | .databaseId' | while read -r workflow_id; do
               gh run rerun $workflow_id
               HAS_RERUN_A_WORKFLOW=true
             done
