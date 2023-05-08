@@ -1,0 +1,8 @@
+name: Failing 2
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing 2
+        run: exit 1
