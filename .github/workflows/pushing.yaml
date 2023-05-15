@@ -6,4 +6,11 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ vars.RUN_IT || 'true' }}"
+      - id: check-me
+        run: |
+          echo "one=yes" >> $GITHUB_OUTPUT
+          echo "two=no" >> $GITHUB_OUTPUT
+      - name: cosa
+        if: ${{ steps.check-me.outputs.one == 'yes' || steps.check-me.outputs.two == 'no' }}
+        run: |
+          echo "oyemeee"
