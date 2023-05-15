@@ -11,6 +11,6 @@ jobs:
           echo "one=yes" >> $GITHUB_OUTPUT
           echo "two=no" >> $GITHUB_OUTPUT
       - name: cosa
-        if: ${{ steps.check-me.outputs.one == 'yes' || steps.check-me.outputs.two != 'no' }}
+        if: ${{ steps.check-me.outputs.one != 'yes' || steps.check-me.outputs.two != 'no' }}
         run: |
           echo "oyemeee"
