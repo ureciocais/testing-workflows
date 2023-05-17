@@ -2,6 +2,9 @@ name: Reusable
 
 on: workflow_call
 
+env:
+  SOME_ENV_VAR: "some value"
+
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
