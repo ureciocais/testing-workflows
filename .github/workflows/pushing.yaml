@@ -11,4 +11,4 @@ on:
 
 jobs:
   something-that-fails:
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yaml
