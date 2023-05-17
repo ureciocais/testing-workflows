@@ -16,4 +16,4 @@ jobs:
   something-that-fails:
     uses: ./.github/workflows/reusable.yaml
     with:
-      something: ${{ env.SOME_ENV_VAR }}
+      something: ${{ envs.SOME_ENV_VAR }}
