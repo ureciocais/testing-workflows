@@ -6,5 +6,5 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ inputs.some-input }}
+      - run: echo ${{ inputs.SOME_ENV_VAR }}
       - run: echo ${{ env.SOME_ENV_VAR }}
