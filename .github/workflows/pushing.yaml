@@ -1,16 +1,14 @@
 name: Pushing
 
-on: push
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      some-input:
+        description: "A description of the input"
+        required: true
+        default: "A default value"
 
 jobs:
   something-that-fails:
-    runs-on: ubuntu-latest
-    steps:
-      - id: check-me
-        run: |
-          echo "one=yes" >> $GITHUB_OUTPUT
-          echo "two=no" >> $GITHUB_OUTPUT
-      - name: cosa
-        if: ${{ steps.check-me.outputs.one != 'yes' || steps.check-me.outputs.two != 'no' }}
-        run: |
-          echo "oyemeee"
+    uses: ./github/workflows/reusable.yml@main

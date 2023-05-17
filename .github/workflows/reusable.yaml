@@ -1,0 +1,9 @@
+name: Reusable
+
+on: workflow_call
+
+jobs:
+  something-that-fails:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ inputs.some-input }}
