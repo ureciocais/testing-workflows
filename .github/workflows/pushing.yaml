@@ -1,5 +1,8 @@
 name: Pushing
 
+env:
+  SOME_ENV_VAR: "some value"
+
 on:
   push:
   workflow_dispatch:
