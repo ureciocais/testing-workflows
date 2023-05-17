@@ -1,8 +1,5 @@
 name: Pushing
 
-env:
-  SOME_ENV_VAR: "some value"
-
 on:
   push:
   workflow_dispatch:
@@ -12,6 +9,11 @@ on:
         required: true
         default: "A default value"
 
+env:
+  SOME_ENV_VAR: "some value"
+
 jobs:
   something-that-fails:
     uses: ./.github/workflows/reusable.yaml
+    with:
+      something: ${{ env.SOME_ENV_VAR }}
