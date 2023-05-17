@@ -9,11 +9,8 @@ on:
         required: true
         default: "A default value"
 
-env:
-  SOME_ENV_VAR: "some value"
-
 jobs:
   something-that-fails:
     uses: ./.github/workflows/reusable.yaml
     with:
-      something: ${{ envs.SOME_ENV_VAR }}
+      SOME_ENV_VAR: "some value"
