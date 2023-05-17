@@ -1,6 +1,15 @@
 name: Reusable
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      SOME_ENV_VAR:
+        description: "Some env var"
+        required: true
+        type: string
+
+env:
+  SOME_ENV_VAR: ${{ inputs.SOME_ENV_VAR }}
 
 jobs:
   something-that-fails:
