@@ -10,9 +10,11 @@ on:
 
 env:
   SOME_ENV_VAR: ${{ inputs.SOME_ENV_VAR }}
+  OTHER_VAR: ${{ github.event.before }}
 
 jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ env.SOME_ENV_VAR }}
+      - run: echo "$OTHER_VAR"
