@@ -16,6 +16,6 @@ jobs:
       - id: oyeme
         run: |
           echo "one=''" >> $GITHUB_OUTPUT
-          echo "two=1" >> $GITHUB_OUTPUT
+          echo "two=0" >> $GITHUB_OUTPUT
       - run: echo 'single'
         if: ${{ steps.oyeme.outputs.one != '' || steps.oyeme.outputs.two == 1 }}
