@@ -13,12 +13,8 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - id: oyeme
+      - id: check-me
         run: |
-          echo "one=''" >> $GITHUB_OUTPUT
-          echo "two=0" >> $GITHUB_OUTPUT
-      - run: |
-          echo "one output: ${{ steps.oyeme.outputs.one }}"
-          echo "two output: ${{ steps.oyeme.outputs.two }}"
-      - run: echo 'single'
-        if: ${{ steps.oyeme.outputs.one != null }}
+          echo "varr=''" >> $GITHUB_OUTPUT
+      - run: echo 'yesss?'
+        if: ${{ steps.check-me.outputs.varr != '' }}
