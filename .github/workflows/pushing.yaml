@@ -13,9 +13,10 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - id: check-me
-        run: |
-          echo "varr=''" >> $GITHUB_OUTPUT
+      # - id: check-me
+      #   run: |
+      #     echo "varr='this'" >> $GITHUB_OUTPUT
+      # - run: echo ${{ steps.check-me.outputs.varr }}
       - name: "should echo?"
-        if: ${{ steps.check-me.outputs.varr == '.' }}
+        if: ${{ inputs.some-input != 'this' }}
         run: echo 'yesss?'
