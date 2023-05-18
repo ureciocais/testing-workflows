@@ -11,6 +11,11 @@ on:
 
 jobs:
   something-that-fails:
-    uses: ./.github/workflows/reusable.yaml
-    with:
-      SOME_ENV_VAR: "some value"
+    runs-on: ubuntu-latest
+    steps:
+      - id: oyeme
+        run: |
+          echo "one=''" >> $GITHUB_OUTPUT
+          echo "two=1" >> $GITHUB_OUTPUT
+      - run: echo 'single'
+        if: ${{ steps.oyeme.outputs.one != '' || steps.oyeme.outputs.two == 1 }}
