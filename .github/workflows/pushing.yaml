@@ -20,12 +20,5 @@ jobs:
       - run: |
           echo "one output: ${{ steps.oyeme.outputs.one }}"
           echo "two output: ${{ steps.oyeme.outputs.two }}"
-      - id: oi
-        run: |
-          if [[ "${{ steps.oyeme.outputs.one }}" != '' ]] | [[ "${{ steps.oyeme.outputs.otwone }}" == '1' ]]; then
-            echo "shouldRun=true"
-          else
-            echo "shouldRun=false"
-          fi
       - run: echo 'single'
-        if: steps.oi.outputs.shouldRun == 'true'
+        if: ${{ 'steps.oyeme.outputs.one' != '' || 'steps.oyeme.outputs.two' == '1' }}
