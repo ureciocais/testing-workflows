@@ -7,16 +7,14 @@ on:
       some-input:
         description: "A description of the input"
         required: true
-        default: "A default value"
+        default: "this"
 
 jobs:
-  something-that-fails:
+  something:
     runs-on: ubuntu-latest
     steps:
-      # - id: check-me
-      #   run: |
-      #     echo "varr='this'" >> $GITHUB_OUTPUT
-      # - run: echo ${{ steps.check-me.outputs.varr }}
-      - name: "should echo?"
-        if: ${{ inputs.some-input != 'this' }}
-        run: echo 'yesss?'
+      - name: hola hoal
+        id: check
+        run: echo "isAnyAppAffected=true" >> $GITHUB_OUTPUT
+      - run: echo "yes"
+        if: ${{ steps.check.outputs.isAnyAppAffected == 'true' }}
