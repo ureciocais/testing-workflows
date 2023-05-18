@@ -15,6 +15,6 @@ jobs:
     steps:
       - id: check-me
         run: |
-          echo "varr=''" >> $GITHUB_OUTPUT
+          echo "varr='eee'" >> $GITHUB_OUTPUT
       - run: echo 'yesss?'
-        if: ${{ steps.check-me.outputs.varr != '' }}
+        if: ${{ steps.check-me.outputs.varr != 'eee' }}
