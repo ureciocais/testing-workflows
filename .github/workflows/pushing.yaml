@@ -17,5 +17,5 @@ jobs:
         run: |
           echo "varr='eee'" >> $GITHUB_OUTPUT
       - name: "should echo?"
-        if: ${{ steps.check-me.outputs.varr != 'eee' }}
+        if: ${{ steps.check-me.outputs.varr == 'eeee' }}
         run: echo 'yesss?'
