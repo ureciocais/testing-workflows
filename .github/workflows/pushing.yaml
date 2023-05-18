@@ -18,4 +18,4 @@ jobs:
           echo "one=''" >> $GITHUB_OUTPUT
           echo "two=0" >> $GITHUB_OUTPUT
       - run: echo 'single'
-        if: ${{ steps.oyeme.outputs.one != '' }} || ${{ steps.oyeme.outputs.two == 1 }}
+        if: steps.oyeme.outputs.one != '' || steps.oyeme.outputs.two == '1'
