@@ -15,6 +15,6 @@ jobs:
     steps:
       - name: hola hoal
         id: check
-        run: echo "isAnyAppAffected=true" >> $GITHUB_OUTPUT
+        run: echo "isAnyAppAffected=false" >> $GITHUB_OUTPUT
       - run: echo "yes"
         if: ${{ steps.check.outputs.isAnyAppAffected == 'true' }}
