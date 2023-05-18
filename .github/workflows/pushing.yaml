@@ -21,4 +21,4 @@ jobs:
           echo "one output: ${{ steps.oyeme.outputs.one }}"
           echo "two output: ${{ steps.oyeme.outputs.two }}"
       - run: echo 'single'
-        if: ${{ steps.oyeme.outputs.one || steps.oyeme.outputs.two == '1' }}
+        if: ${{ steps.oyeme.outputs.one != '' || steps.oyeme.outputs.two == '1' }}
