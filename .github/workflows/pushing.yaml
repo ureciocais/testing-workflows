@@ -13,4 +13,9 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "ee $GITHUB_WORKSPACE"
+      - name: set simple output
+        id: simple
+        run: echo "simple=." >>${GITHUB_OUTPUT}
+      - name: skip this step
+        if: ${{ steps.simple.outputs.simple != '.' }}
+        run: echo "Wasn't skipped!"
