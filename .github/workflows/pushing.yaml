@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: set simple output
         id: simple
-        run: echo "simple=." >>${GITHUB_OUTPUT}
+        run: echo "simple='.'" >>${GITHUB_OUTPUT}
       - name: skip this step
         if: ${{ steps.simple.outputs.simple != '.' }}
         run: echo "Wasn't skipped!"
