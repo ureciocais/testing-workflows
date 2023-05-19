@@ -13,8 +13,4 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - name: hola hoal
-        id: check
-        run: echo "isAnyAppAffected=0" >> $GITHUB_OUTPUT
-      - run: echo "yes"
-        if: ${{ steps.check.outputs.isAnyAppAffected == 0 }}
+      - run: echo "ee $GITHUB_WORKSPACE"
