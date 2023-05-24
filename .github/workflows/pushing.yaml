@@ -11,11 +11,4 @@ on:
 
 jobs:
   something:
-    runs-on: ubuntu-latest
-    steps:
-      - name: set simple output
-        id: simple
-        run: echo "simple=." >>${GITHUB_OUTPUT}
-      - name: skip this step
-        if: ${{ steps.simple.outputs.simple == '.' }}
-        run: echo "Wasn't skipped!"
+    uses: ./github/workflows/reusable.yaml
