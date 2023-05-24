@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      some-input:
+      SOME_ENV_VAR:
         description: "A description of the input"
         required: true
         default: "this"
