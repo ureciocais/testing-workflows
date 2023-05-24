@@ -3,7 +3,7 @@ name: Reusable
 on:
   workflow_call:
     inputs:
-      some-input:
+      SOME_ENV_VAR:
         description: "Some env var"
         required: true
         type: string
@@ -16,5 +16,5 @@ jobs:
   something-that-fails:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ inputs.some-input }}
+      - run: echo ${{ env.SOME_ENV_VAR }}
       - run: echo "$OTHER_VAR"
