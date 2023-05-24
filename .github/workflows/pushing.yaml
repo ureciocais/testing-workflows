@@ -11,4 +11,4 @@ on:
 
 jobs:
   something:
-    uses: ./.github/workflows/reusable.yaml@main
+    uses: .github/workflows/reusable.yaml@main
