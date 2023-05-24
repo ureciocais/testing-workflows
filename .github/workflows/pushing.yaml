@@ -11,4 +11,4 @@ on:
 
 jobs:
   something:
-    uses: .github/workflows/reusable.yaml@main
+    uses: cais-group/fe-pipelines/.github/workflows/reusable.yaml@main
