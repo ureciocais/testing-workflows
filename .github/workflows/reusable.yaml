@@ -2,6 +2,11 @@ name: Reusable
 
 on:
   workflow_call:
+    inputs:
+      anotherthing:
+        description: "Another thing"
+        required: true
+        type: "string"
 
 env:
   SOME_ENV_VAR: ${{ github.event.inputs.SOME_ENV_VAR }}
@@ -13,3 +18,4 @@ jobs:
     steps:
       - run: echo ${{ env.SOME_ENV_VAR }}
       - run: echo "$OTHER_VAR"
+      - run: echo "$anotherthing"
