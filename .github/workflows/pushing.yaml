@@ -12,5 +12,3 @@ on:
 jobs:
   something:
     uses: ./.github/workflows/reusable.yaml
-    with:
-      SOME_ENV_VAR: ${{ inputs.SOME_ENV_VAR }}
