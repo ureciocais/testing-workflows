@@ -2,14 +2,9 @@ name: Reusable
 
 on:
   workflow_call:
-    inputs:
-      SOME_ENV_VAR:
-        description: "Some env var"
-        required: true
-        type: string
 
 env:
-  SOME_ENV_VAR: ${{ inputs.SOME_ENV_VAR }}
+  SOME_ENV_VAR: ${{ github.event.inputs.SOME_ENV_VAR }}
   OTHER_VAR: ${{ github.event.before }}
 
 jobs:
