@@ -11,6 +11,7 @@ on:
 
 jobs:
   something:
+    name: Someee thingg
     uses: ./.github/workflows/reusable.yaml
     with:
       anotherthing: "teeee"
