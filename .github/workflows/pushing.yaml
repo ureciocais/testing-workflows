@@ -1,7 +1,6 @@
 name: Pushing
 
 on:
-  pull_request:
   push:
 
 jobs:
