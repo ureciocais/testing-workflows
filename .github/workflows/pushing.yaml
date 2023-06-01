@@ -2,16 +2,10 @@ name: Pushing
 
 on:
   push:
-  workflow_dispatch:
-    inputs:
-      SOME_ENV_VAR:
-        description: "A description of the input"
-        required: true
-        default: "this"
 
 jobs:
   something:
-    name: Someee thingg
-    uses: ./.github/workflows/reusable.yaml
-    with:
-      anotherthing: "teeee"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do something
+        run: echo ${{ github.head_ref || github.sha }}
