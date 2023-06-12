@@ -13,3 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: more $GITHUB_EVENT_PATH
+      - run: echo ${{ github.event.pull_request.head.ref }}
