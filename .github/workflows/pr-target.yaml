@@ -8,6 +8,10 @@ on:
       - synchronize
       - ready_for_review
       - labeled
+
+env:
+  HEAD_REF: ${{ github.event.pull_request.head.ref }}
+
 jobs:
   check:
     runs-on: ubuntu-latest
