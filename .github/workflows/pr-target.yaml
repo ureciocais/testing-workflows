@@ -14,3 +14,4 @@ jobs:
     steps:
       - run: more $GITHUB_EVENT_PATH
       - run: echo ${{ github.event.pull_request.head.ref }}
+      - run: echo ${{ github.workflow }}-${{ github.event.pull_request.head.ref }}-create-ephemeral
