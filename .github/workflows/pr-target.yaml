@@ -1,0 +1,15 @@
+name: Check
+on:
+  pull_request_target:
+    branches: [main]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - labeled
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: more $GITHUB_EVENT_PATH
