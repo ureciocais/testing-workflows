@@ -15,5 +15,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do something
-        if: ${{ github.ref_name == 'refs/heads/main' }}
+        if: ${{ github.ref_name == 'main' }}
         run: echo "yesss"
