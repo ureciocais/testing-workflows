@@ -2,6 +2,7 @@ name: Pushing
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
     inputs:
       SOME_ENV_VAR:
@@ -11,7 +12,7 @@ on:
 
 jobs:
   something:
-    name: Someee thingg
-    uses: ./.github/workflows/reusable.yaml
-    with:
-      anotherthing: "teeee"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do something
+        run: echo "$GITHUB_REF"
