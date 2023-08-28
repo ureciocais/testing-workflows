@@ -17,7 +17,7 @@ jobs:
       - name: testing retry with shell
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 10
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           command: |
