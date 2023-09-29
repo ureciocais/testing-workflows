@@ -14,12 +14,15 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: testing retry with shell
-        uses: nick-fields/retry@v2
+        uses: ./.github/actions/retry
         with:
           timeout_minutes: 1
           max_attempts: 3
-          shell: bash
+          shell: bash -ce
           command: |
             bash -l
             echo "pollas" | grep -c "aca"
