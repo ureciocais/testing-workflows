@@ -945,6 +945,7 @@ var OUTPUT_EXIT_ERROR_KEY = 'exit_error';
 var exit;
 var done;
 function getExecutable(inputs) {
+    console.log('inputs...', inputs);
     if (!inputs.shell) {
         return OS === 'win32' ? 'powershell' : 'bash';
     }
@@ -1018,8 +1019,8 @@ function runCmd(attempt, inputs) {
                     timeout = false;
                     (0, core_1.debug)("Running command ".concat(inputs.command, " on ").concat(OS, " using shell ").concat(executable));
                     child = attempt > 1 && inputs.new_command_on_retry
-                        ? (0, child_process_1.spawn)("python3 ".concat(path_1.default.join(__dirname, 'executor.py'), " ").concat(inputs.new_command_on_retry, " ").concat(executable))
-                        : (0, child_process_1.spawn)("python3 ".concat(path_1.default.join(__dirname, 'executor.py'), " ").concat(inputs.command, " ").concat(executable));
+                        ? (0, child_process_1.spawn)("python3 ".concat(path_1.default.join(__dirname, 'executor.py'), " \"").concat(inputs.new_command_on_retry, "\" \"").concat(executable, "\""), { shell: true })
+                        : (0, child_process_1.spawn)("python3 ".concat(path_1.default.join(__dirname, 'executor.py'), " \"").concat(inputs.command, "\" \"").concat(executable, "\""), { shell: true });
                     (_a = child.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) {
                         process.stdout.write(data);
                     });
